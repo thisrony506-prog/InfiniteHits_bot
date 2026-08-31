@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { User, Campaign, Package, Payment, CreditTransaction, SupportTicket, SystemSettings } from '../types';
 import { TrafficViewer } from './TrafficViewer';
+import { triggerHapticFeedback } from '../lib/telegram';
 import {
   Home,
   Globe,
@@ -281,7 +282,7 @@ export const MiniAppView: React.FC<MiniAppViewProps> = ({
   const isBalanceSufficient = user.credits >= totalCampaignCost;
 
   return (
-    <div className="max-w-md mx-auto bg-slate-950 border border-slate-800 rounded-3xl min-h-[720px] flex flex-col justify-between overflow-hidden shadow-2xl relative text-slate-100 font-sans">
+    <div className="w-full max-w-md mx-auto bg-slate-950 border-x sm:border border-slate-800/80 rounded-2xl sm:rounded-3xl min-h-[calc(100vh-6rem)] sm:min-h-[720px] flex flex-col justify-between overflow-hidden shadow-2xl relative text-slate-100 font-sans">
       
       {/* Mini App Top Header Card */}
       <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-5 border-b border-slate-800/80 space-y-4">
@@ -961,7 +962,10 @@ export const MiniAppView: React.FC<MiniAppViewProps> = ({
           return (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id as any)}
+              onClick={() => {
+                triggerHapticFeedback('light');
+                setActiveTab(item.id as any);
+              }}
               className={`flex flex-col items-center space-y-1 py-1 px-3 rounded-xl transition-all ${
                 isActive ? 'text-indigo-400 scale-105 font-bold' : 'text-slate-400 hover:text-slate-200'
               }`}

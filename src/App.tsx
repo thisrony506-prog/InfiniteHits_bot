@@ -100,7 +100,7 @@ export default function App() {
         onRefreshUser={fetchUserData}
       />
 
-      <main className="flex-1 py-6 px-4">
+      <main className="flex-1 py-3 sm:py-6 px-1 sm:px-4">
         {activeView === 'miniapp' && (
           <MiniAppView
             user={user}

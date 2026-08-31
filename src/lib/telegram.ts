@@ -69,12 +69,42 @@ export function getTelegramUser(): TelegramUser | null {
   return defaultDemoUser;
 }
 
+export function isInsideTelegram(): boolean {
+  const tg = getTelegramWebApp();
+  return !!(tg && tg.initData && tg.initData.length > 0);
+}
+
+export function triggerHapticFeedback(type: 'light' | 'medium' | 'heavy' | 'success' | 'warning' | 'error' = 'medium') {
+  const tg = getTelegramWebApp();
+  if (tg && tg.HapticFeedback) {
+    try {
+      if (['light', 'medium', 'heavy'].includes(type)) {
+        tg.HapticFeedback.impactOccurred(type);
+      } else {
+        tg.HapticFeedback.notificationOccurred(type);
+      }
+    } catch (e) {
+      console.error('Haptic error', e);
+    }
+  }
+}
+
+export function openExternalUrl(url: string) {
+  const tg = getTelegramWebApp();
+  if (tg && tg.openLink) {
+    tg.openLink(url);
+  } else {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+}
+
 export function initializeTelegramTheme() {
   const tg = getTelegramWebApp();
   if (tg) {
     tg.ready();
     tg.expand();
     try {
+      if (tg.enableClosingConfirmation) tg.enableClosingConfirmation();
       if (tg.setHeaderColor) tg.setHeaderColor('#0f172a');
       if (tg.setBackgroundColor) tg.setBackgroundColor('#020617');
     } catch (e) {
