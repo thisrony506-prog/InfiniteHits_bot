@@ -1,0 +1,6 @@
+{
+  "name": "InfiniteHits",
+  "description": "InfiniteHits - Complete Telegram Bot & Mini App Traffic Promotion Platform",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
