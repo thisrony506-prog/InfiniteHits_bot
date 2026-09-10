@@ -126,61 +126,7 @@ jobs:
             echo "No Gradle output was captured." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          python3 - "$log" "$GITHUB_STEP_SUMMARY" <<'PY'
-          import re, sys
-
-          log_path, summary_path = sys.argv[1], sys.argv[2]
-          lines = open(log_path, errors="replace").read().splitlines()
-
-          def keep(patterns, source):
-              return [l for l in source if any(re.search(p, l) for p in patterns)]
-
-          # Kotlin/Java compiler errors, then Gradle's own explanation.
-          errors = keep([r"^\s*e: ", r"^\s*e:file"], lines)
-          problems = keep(
-              [
-                  r"(?i)error:",
-                  r"(?i)^\s*FAILURE:",
-                  r"(?i)what went wrong",
-                  r"(?i)execution failed for task",
-                  r"(?i)caused by:",
-                  r"(?i)could not (resolve|find|determine|download|create|load|open)",
-                  r"(?i)^\s*\* try:",
-                  r"^\s*>\s.*FAILED",
-                  r"(?i)unsupported class file",
-                  r"(?i)incompatible with attribute",
-              ],
-              lines,
-          )
-          selected = errors or problems or lines[-200:]
-
-          seen, uniq = set(), []
-          for line in selected:
-              line = line.strip()
-              if line and line not in seen:
-                  seen.add(line)
-                  uniq.append(line)
-
-          # One annotation per problem: a single large message is truncated by
-          # GitHub to ~4 kB, which used to hide everything after the first few.
-          emitted = 0
-          for line in uniq:
-              if emitted >= 50:
-                  break
-              message = line.replace("%", "%25").replace("\r", "").replace("\n", "%0A")[:3000]
-              print(f"::error title=Build error {emitted + 1}::{message}")
-              emitted += 1
-          if emitted == 0:
-              print("::error title=Build failed::The Gradle build failed; see the run log.")
-          if len(uniq) > emitted:
-              print(f"::warning::{len(uniq) - emitted} more line(s) in the job summary")
-
-          with open(summary_path, "a") as summary:
-              summary.write("### Debug APK build failed\n\n")
-              summary.write(f"{len(uniq)} relevant log line(s):\n\n```\n")
-              summary.write("\n".join(uniq)[:200000])
-              summary.write("\n```\n")
-          PY
+          python3 tools/ci/build_diagnostics.py "$log" "$GITHUB_STEP_SUMMARY"
 
       # Gives the artefact a recognisable file name and fails loudly if Gradle
       # reported success but produced nothing.
