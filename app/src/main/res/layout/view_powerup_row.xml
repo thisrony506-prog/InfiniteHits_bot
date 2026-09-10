@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shop_row_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/space_sm"
+    android:paddingBottom="@dimen/space_sm">
+
+    <FrameLayout
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_powerup">
+
+        <ImageView
+            android:id="@+id/shop_row_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_aim" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_md"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/shop_row_name"
+            style="@style/TextAppearance.BubbleBlast.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_subtitle" />
+
+        <TextView
+            android:id="@+id/shop_row_desc"
+            style="@style/TextAppearance.BubbleBlast.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/shop_row_owned"
+            style="@style/TextAppearance.BubbleBlast.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/accent_cyan" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shop_row_buy_button"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height_small"
+        android:background="@drawable/bg_button_secondary"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:minWidth="96dp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_md"
+        android:paddingEnd="@dimen/space_md">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/shop_row_price"
+            style="@style/TextAppearance.BubbleBlast.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_xs"
+            android:text="@string/shop_buy"
+            android:textSize="@dimen/text_body" />
+    </LinearLayout>
+</LinearLayout>

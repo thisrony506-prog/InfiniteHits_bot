@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Player progress is intentionally backed up so a restored device keeps the save. -->
+<full-backup-content>
+    <include
+        domain="sharedpref"
+        path="bubble_blast_prefs.xml" />
+</full-backup-content>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bubble Blast</string>
+    <string name="app_tagline">Pop, drop and blast your way through 120 levels!</string>
+
+    <!-- Splash -->
+    <string name="splash_loading">Loading bubbles…</string>
+    <string name="splash_preparing">Warming up the launcher…</string>
+
+    <!-- Home -->
+    <string name="home_play">PLAY</string>
+    <string name="home_continue">CONTINUE LEVEL %1$d</string>
+    <string name="home_levels">LEVELS</string>
+    <string name="home_sound">Sound</string>
+    <string name="home_music">Music</string>
+    <string name="home_daily">Daily Reward</string>
+    <string name="home_daily_ready">Reward ready!</string>
+    <string name="home_coins">Coins</string>
+    <string name="home_total_stars">%1$d stars</string>
+    <string name="home_exit_hint">Press back again to exit</string>
+
+    <!-- Levels -->
+    <string name="levels_title">Select Level</string>
+    <string name="levels_progress">%1$d of %2$d cleared</string>
+    <string name="levels_locked">Finish level %1$d to unlock this one</string>
+    <string name="levels_stars_total">%1$d / %2$d</string>
+
+    <!-- HUD -->
+    <string name="hud_level">Level %1$d</string>
+    <string name="hud_score">Score</string>
+    <string name="hud_moves">Moves</string>
+    <string name="hud_moves_left">%1$d</string>
+    <string name="hud_target">Target %1$d</string>
+    <string name="hud_next">Next</string>
+    <string name="hud_combo">COMBO x%1$d</string>
+
+    <!-- Power-ups -->
+    <string name="powerup_aim">Aim Extension</string>
+    <string name="powerup_aim_desc">Longer trajectory guide that also shows one bounce.</string>
+    <string name="powerup_color">Color Changer</string>
+    <string name="powerup_color_desc">Swap the loaded bubble for the next colour.</string>
+    <string name="powerup_bomb">Bomb</string>
+    <string name="powerup_bomb_desc">Tap the board to blow up a small cluster.</string>
+    <string name="powerup_moves">Extra Moves</string>
+    <string name="powerup_moves_desc">Adds 3 extra moves to the current level.</string>
+    <string name="powerup_added_moves">+%1$d moves</string>
+    <string name="powerup_aim_active">Aim extended for %1$d shots</string>
+    <string name="powerup_color_changed">Colour changed</string>
+    <string name="powerup_bomb_armed">Tap a bubble to bomb it</string>
+    <string name="powerup_none_left">No %1$s left</string>
+    <string name="powerup_owned">Owned: %1$d</string>
+    <string name="shop_title">Power-up Shop</string>
+    <string name="shop_balance">Your coins: %1$d</string>
+    <string name="shop_buy">Buy</string>
+    <string name="shop_not_enough">Not enough coins</string>
+    <string name="shop_purchased">%1$s purchased</string>
+    <string name="shop_close">Close</string>
+
+    <!-- Game dialogs -->
+    <string name="pause_title">Paused</string>
+    <string name="pause_resume">Resume</string>
+    <string name="pause_restart">Restart Level</string>
+    <string name="pause_settings">Settings</string>
+    <string name="pause_home">Quit to Home</string>
+    <string name="pause_quit_message">Quit this level? Your progress in it will be lost.</string>
+    <string name="pause_quit_title">Quit level?</string>
+
+    <string name="level_complete_title">Level Complete!</string>
+    <string name="level_complete_score">Score</string>
+    <string name="level_complete_best">Best</string>
+    <string name="level_complete_coins">Coins earned</string>
+    <string name="level_complete_replay">Replay</string>
+    <string name="level_complete_next">Next Level</string>
+    <string name="level_complete_home">Home</string>
+    <string name="level_complete_double">Double coins (watch ad)</string>
+    <string name="level_complete_new_best">New best score!</string>
+    <string name="level_complete_all_done">You finished every level. New chapters coming soon!</string>
+
+    <string name="game_over_title">Game Over</string>
+    <string name="game_over_reason_moves">Out of moves</string>
+    <string name="game_over_reason_danger">Bubbles crossed the danger line</string>
+    <string name="game_over_score">Score</string>
+    <string name="game_over_best">Best Score</string>
+    <string name="game_over_retry">Retry</string>
+    <string name="game_over_levels">Level Select</string>
+    <string name="game_over_home">Home</string>
+    <string name="game_over_continue_ad">Continue (+5 moves)</string>
+
+    <!-- Daily reward -->
+    <string name="daily_title">Daily Reward</string>
+    <string name="daily_claim">Claim</string>
+    <string name="daily_claimed">Claimed!</string>
+    <string name="daily_streak">Day %1$d streak</string>
+    <string name="daily_reward_coins">+%1$d coins</string>
+    <string name="daily_reward_powerup">+%1$d %2$s</string>
+    <string name="daily_already">Come back tomorrow for your next reward.</string>
+    <string name="daily_close">Close</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_audio">Audio</string>
+    <string name="settings_sound">Sound effects</string>
+    <string name="settings_music">Background music</string>
+    <string name="settings_vibration">Vibration</string>
+    <string name="settings_gameplay">Gameplay</string>
+    <string name="settings_show_trajectory">Show trajectory guide</string>
+    <string name="settings_left_handed">Left-handed layout</string>
+    <string name="settings_progress">Progress</string>
+    <string name="settings_reset">Reset all progress</string>
+    <string name="settings_reset_title">Reset progress?</string>
+    <string name="settings_reset_message">This permanently deletes your levels, stars, coins and best scores. This cannot be undone.</string>
+    <string name="settings_reset_confirm">Delete everything</string>
+    <string name="settings_reset_done">Progress reset</string>
+    <string name="settings_legal">Legal</string>
+    <string name="settings_privacy">Privacy Policy</string>
+    <string name="settings_terms">Terms &amp; Conditions</string>
+    <string name="settings_about">About Bubble Blast</string>
+    <string name="settings_version">Version %1$s</string>
+    <string name="settings_cancel">Cancel</string>
+
+    <!-- About -->
+    <string name="about_body">Bubble Blast is a fully offline casual arcade game. No account, no internet connection and no ads required to play.\n\nPop groups of three or more bubbles, drop the clusters hanging underneath them and beat the target score before you run out of moves.</string>
+    <string name="about_credits">Designed and built with love. Music and sound effects are generated procedurally by the tooling that ships with the project.</string>
+    <string name="about_close">Close</string>
+
+    <!-- Legal -->
+    <string name="legal_title_privacy">Privacy Policy</string>
+    <string name="legal_title_terms">Terms &amp; Conditions</string>
+    <string name="legal_error">Could not open the document.</string>
+
+    <!-- Ads / misc -->
+    <string name="reward_granted">Reward granted</string>
+    <string name="reward_unavailable">No reward available right now</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_yes">Yes</string>
+
+    <!-- Accessibility -->
+    <string name="cd_play">Play the game</string>
+    <string name="cd_settings">Open settings</string>
+    <string name="cd_levels">Open level select</string>
+    <string name="cd_back">Go back</string>
+    <string name="cd_pause">Pause the game</string>
+    <string name="cd_star_full">Star earned</string>
+    <string name="cd_star_empty">Star not earned</string>
+    <string name="cd_locked_level">Locked level</string>
+    <string name="cd_coin">Coins</string>
+    <string name="cd_next_bubble">Next bubble</string>
+    <string name="cd_daily">Collect daily reward</string>
+</resources>

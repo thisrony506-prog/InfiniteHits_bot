@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/legal_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_lg"
+        android:paddingTop="@dimen/space_md"
+        android:paddingEnd="@dimen/space_lg"
+        android:paddingBottom="@dimen/space_sm">
+
+        <ImageButton
+            android:id="@+id/legal_back_button"
+            style="@style/Widget.BubbleBlast.IconButton"
+            android:contentDescription="@string/cd_back"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/legal_title"
+            style="@style/TextAppearance.BubbleBlast.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_md"
+            android:layout_weight="1"
+            android:text="@string/settings_privacy" />
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/legal_webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/space_sm"
+        android:layout_marginEnd="@dimen/space_sm"
+        android:layout_marginBottom="@dimen/space_sm"
+        android:layout_weight="1"
+        android:background="@color/transparent" />
+
+    <!-- Shown only if a bundled document is missing or unreadable. -->
+    <TextView
+        android:id="@+id/legal_error_text"
+        style="@style/TextAppearance.BubbleBlast.Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_lg"
+        android:layout_marginEnd="@dimen/space_lg"
+        android:layout_marginBottom="@dimen/space_xl"
+        android:gravity="center"
+        android:text="@string/legal_error"
+        android:visibility="gone" />
+</LinearLayout>

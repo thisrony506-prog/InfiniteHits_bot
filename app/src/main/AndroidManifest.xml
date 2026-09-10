@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Haptics only. The game needs no internet access, no storage and no accounts. -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Optional: keep the game off devices without touch screens. -->
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="true" />
+
+    <application
+        android:name=".BubbleBlastApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="false"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BubbleBlast"
+        android:enableOnBackInvokedCallback="true">
+
+        <!-- Splash / entry point -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|density|smallestScreenSize"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.BubbleBlast.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.HomeActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|density|smallestScreenSize"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.LevelSelectActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|density|smallestScreenSize"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- The playable level. singleTop avoids stacking duplicate game sessions. -->
+        <activity
+            android:name=".ui.GameActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|density|smallestScreenSize"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.BubbleBlast.Game" />
+
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|density|smallestScreenSize"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.LegalActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|density|smallestScreenSize"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- Ads are not enabled yet. When AdMob is wired up (docs/ADS_INTEGRATION.md)
+             the Application ID below must be added to this <application> tag:
+
+             <meta-data
+                 android:name="com.google.android.gms.ads.APPLICATION_ID"
+                 android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy" />
+        -->
+    </application>
+</manifest>

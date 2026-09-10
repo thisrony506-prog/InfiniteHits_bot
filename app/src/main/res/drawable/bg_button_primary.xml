@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Soft outer glow -->
+    <item android:top="3dp" android:left="2dp" android:right="2dp" android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_pill" />
+            <solid android:color="#5512C46A" />
+        </shape>
+    </item>
+    <item android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_pill" />
+            <gradient
+                android:angle="270"
+                android:startColor="#57F08A"
+                android:endColor="#17B75A" />
+            <stroke
+                android:width="@dimen/stroke_width_strong"
+                android:color="#99FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Bubble Blast colour palette.
+
+  NOTE: the six bubble hues below are mirrored in code by
+  com.infinitehits.bubbleblast.core.model.BubblePalette, which is the single
+  source of truth for everything painted on the game canvas.
+-->
+<resources>
+
+    <!-- ============ Bubble hues ============ -->
+    <color name="bubble_red">#FF4D5E</color>
+    <color name="bubble_red_dark">#C81E36</color>
+    <color name="bubble_red_light">#FF97A2</color>
+
+    <color name="bubble_blue">#2E9BFF</color>
+    <color name="bubble_blue_dark">#0B62C4</color>
+    <color name="bubble_blue_light">#9AD1FF</color>
+
+    <color name="bubble_green">#31C95B</color>
+    <color name="bubble_green_dark">#12813A</color>
+    <color name="bubble_green_light">#96EDA9</color>
+
+    <color name="bubble_yellow">#FFC629</color>
+    <color name="bubble_yellow_dark">#C98E00</color>
+    <color name="bubble_yellow_light">#FFE499</color>
+
+    <color name="bubble_purple">#A85CFF</color>
+    <color name="bubble_purple_dark">#6E23C8</color>
+    <color name="bubble_purple_light">#D6B3FF</color>
+
+    <color name="bubble_orange">#FF7A2F</color>
+    <color name="bubble_orange_dark">#C94006</color>
+    <color name="bubble_orange_light">#FFBC8A</color>
+
+    <!-- Special / obstacle bubbles -->
+    <color name="bubble_stone">#8C8FA6</color>
+    <color name="bubble_stone_dark">#5A5D74</color>
+    <color name="bubble_ice">#B9ECFF</color>
+    <color name="bubble_ice_dark">#5FA9CC</color>
+    <color name="bubble_lock">#4A4468</color>
+    <color name="bubble_unbreakable">#3B3F52</color>
+    <color name="bubble_rainbow_a">#FF4D9D</color>
+    <color name="bubble_rainbow_b">#4DE1FF</color>
+    <color name="bubble_bomb">#2C2A3D</color>
+    <color name="bubble_lightning">#66E4FF</color>
+    <color name="bubble_fire">#FF6B2C</color>
+
+    <!-- ============ Screen backgrounds ============ -->
+    <color name="bg_deep">#251457</color>
+    <color name="bg_mid">#4B2384</color>
+    <color name="bg_glow">#8E2FA8</color>
+    <color name="bg_warm">#C43C86</color>
+
+    <!-- ============ Surfaces ============ -->
+    <color name="surface_panel">#3A2470</color>
+    <color name="surface_panel_translucent">#B33A2470</color>
+    <color name="surface_card">#4A2C86</color>
+    <color name="surface_locked">#2E2154</color>
+    <color name="surface_overlay">#CC150A33</color>
+    <color name="stroke_soft">#33FFFFFF</color>
+    <color name="stroke_strong">#66FFFFFF</color>
+
+    <!-- ============ Text ============ -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#CFC7F0</color>
+    <color name="text_muted">#9E93C8</color>
+    <color name="text_on_accent">#2B1152</color>
+
+    <!-- ============ Accents ============ -->
+    <color name="accent_gold">#FFC629</color>
+    <color name="accent_gold_dark">#D89A00</color>
+    <color name="accent_green">#38D96B</color>
+    <color name="accent_green_dark">#12813A</color>
+    <color name="accent_pink">#FF4D9D</color>
+    <color name="accent_cyan">#4DE1FF</color>
+    <color name="danger_red">#FF4D5E</color>
+
+    <!-- ============ States ============ -->
+    <color name="level_unlocked">#5B34A8</color>
+    <color name="level_current">#38D96B</color>
+    <color name="level_locked">#2E2154</color>
+    <color name="status_bar">#1B0F42</color>
+    <color name="nav_bar">#1B0F42</color>
+    <color name="transparent">#00000000</color>
+    <color name="scrim">#A6000000</color>
+</resources>

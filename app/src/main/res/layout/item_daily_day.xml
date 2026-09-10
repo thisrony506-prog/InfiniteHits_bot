@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/daily_day_root"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:background="@drawable/bg_star_slot"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/space_sm"
+    android:paddingBottom="@dimen/space_sm">
+
+    <TextView
+        android:id="@+id/daily_day_label"
+        style="@style/TextAppearance.BubbleBlast.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/daily_claim" />
+
+    <ImageView
+        android:id="@+id/daily_day_icon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="@dimen/space_xs"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_coin" />
+
+    <TextView
+        android:id="@+id/daily_day_value"
+        style="@style/TextAppearance.BubbleBlast.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xxs"
+        android:text="@string/daily_claim"
+        android:textColor="@color/text_primary" />
+</LinearLayout>
