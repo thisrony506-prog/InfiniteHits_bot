@@ -135,7 +135,8 @@ jobs:
           def keep(patterns, source):
               return [l for l in source if any(re.search(p, l) for p in patterns)]
 
-          errors = keep([r"^\s*e: ", r"^\s*e:file"], lines)          # Kotlin errors
+          # Kotlin/Java compiler errors, then Gradle's own explanation.
+          errors = keep([r"^\s*e: ", r"^\s*e:file"], lines)
           problems = keep(
               [
                   r"(?i)error:",
@@ -147,33 +148,38 @@ jobs:
                   r"(?i)^\s*\* try:",
                   r"^\s*>\s.*FAILED",
                   r"(?i)unsupported class file",
+                  r"(?i)incompatible with attribute",
               ],
               lines,
           )
-          selected = errors or problems or lines[-250:]
+          selected = errors or problems or lines[-200:]
 
-          # Keep insertion order, drop duplicates, and cap the volume.
           seen, uniq = set(), []
           for line in selected:
-              line = line.rstrip()
+              line = line.strip()
               if line and line not in seen:
                   seen.add(line)
                   uniq.append(line)
-          text = "\n".join(uniq)[:48000]
 
-          chunk_size = 4800
-          chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)][:10]
-          for index, chunk in enumerate(chunks, 1):
-              message = chunk.replace("%", "%25").replace("\r", "").replace("\n", "%0A")
-              print(f"::error title=Build failed ({index}/{len(chunks)})::{message}")
-
-          if not chunks:
+          # One annotation per problem: a single large message is truncated by
+          # GitHub to ~4 kB, which used to hide everything after the first few.
+          emitted = 0
+          for line in uniq:
+              if emitted >= 50:
+                  break
+              message = line.replace("%", "%25").replace("\r", "").replace("\n", "%0A")[:3000]
+              print(f"::error title=Build error {emitted + 1}::{message}")
+              emitted += 1
+          if emitted == 0:
               print("::error title=Build failed::The Gradle build failed; see the run log.")
+          if len(uniq) > emitted:
+              print(f"::warning::{len(uniq) - emitted} more line(s) in the job summary")
 
           with open(summary_path, "a") as summary:
               summary.write("### Debug APK build failed\n\n")
-              summary.write(f"First {len(uniq)} relevant log line(s):\n\n")
-              summary.write("```\n" + text[:60000] + "\n```\n")
+              summary.write(f"{len(uniq)} relevant log line(s):\n\n```\n")
+              summary.write("\n".join(uniq)[:200000])
+              summary.write("\n```\n")
           PY
 
       # Gives the artefact a recognisable file name and fails loudly if Gradle

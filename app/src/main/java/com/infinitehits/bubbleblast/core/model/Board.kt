@@ -17,7 +17,10 @@ import kotlin.math.sin
  */
 class Board(val geometry: BoardGeometry) {
 
-    private val rows = HashMap<Int, Array<Bubble?>>()
+    // @PublishedApi: [forEachBubble] is a public inline function, so the storage it
+    // walks has to be readable from the inlined call site.
+    @PublishedApi
+    internal val rows = HashMap<Int, Array<Bubble?>>()
 
     /** Row index currently attached to the ceiling. Inserted rows decrement it. */
     var topRow: Int = 0

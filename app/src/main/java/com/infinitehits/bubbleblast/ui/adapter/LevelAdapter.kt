@@ -74,7 +74,7 @@ class LevelAdapter(private val onLevelClick: (Int) -> Unit) :
             UiUtils.setVisible(lock, !unlocked)
             number.visibility = if (unlocked) View.VISIBLE else View.INVISIBLE
 
-            for ((index, star) in stars.entries.withIndex()) {
+            for ((index, star) in stars.withIndex()) {
                 val earned = starCount > index
                 star.setImageResource(if (earned) R.drawable.ic_star else R.drawable.ic_star_empty)
                 star.alpha = if (unlocked) 1f else 0.4f
