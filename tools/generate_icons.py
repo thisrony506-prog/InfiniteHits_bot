@@ -199,12 +199,13 @@ def _arc_points(p0, p1, rx, ry, large, sweep, steps=24):
 
 
 def _rgba(color, alpha=1.0):
+    """#RRGGBB or #AARRGGBB - the same order Android's fillColor expects."""
     color = color.lstrip("#")
     if len(color) == 6:
         r, g, b = (int(color[i:i + 2], 16) for i in (0, 2, 4))
         a = 255
     else:
-        r, g, b, a = (int(color[i:i + 2], 16) for i in (0, 2, 4, 6))
+        a, r, g, b = (int(color[i:i + 2], 16) for i in (0, 2, 4, 6))
     return (r, g, b, int(a * alpha))
 
 
@@ -447,10 +448,10 @@ def create_icon_definitions():
     ]
     icons["ic_gift"] = [
         dict(d="M4,10.4 h16 v3.2 h-16 Z", fill=PINK),
-        dict(d="M5.6,13.6 h12.8 v6.4 a1.2,1.2 0 0 1 -1.2,1.2 h-10.4 a1.2,1.2 0 0 1 -1.2,-1.2 Z", fill="#E64FB08A"),
-        dict(d="M10.8,10.4 h2.4 v10.8 h-2.4 Z", fill="#FFFFE08A"),
-        dict(d="M12,9.6 C10.4,5.6 5.6,5.6 6.4,8.6 C7,10.4 10.4,10.2 12,9.6 Z", fill="#FFFFE08A"),
-        dict(d="M12,9.6 C13.6,5.6 18.4,5.6 17.6,8.6 C17,10.4 13.6,10.2 12,9.6 Z", fill="#FFFFE08A"),
+        dict(d="M5.6,13.6 h12.8 v6.4 a1.2,1.2 0 0 1 -1.2,1.2 h-10.4 a1.2,1.2 0 0 1 -1.2,-1.2 Z", fill="#E64FB0"),
+        dict(d="M10.8,10.4 h2.4 v10.8 h-2.4 Z", fill="#FFE08A"),
+        dict(d="M12,9.6 C10.4,5.6 5.6,5.6 6.4,8.6 C7,10.4 10.4,10.2 12,9.6 Z", fill="#FFE08A"),
+        dict(d="M12,9.6 C13.6,5.6 18.4,5.6 17.6,8.6 C17,10.4 13.6,10.2 12,9.6 Z", fill="#FFE08A"),
     ]
     icons["ic_aim"] = [
         dict(d="M12,4.2 A7.8,7.8 0 1 0 12,19.8 A7.8,7.8 0 1 0 12,4.2 Z", fill=None, stroke=WHITE, stroke_width=1.8),
@@ -505,9 +506,9 @@ def bubble(cx, cy, r, base, highlight, outline="#CCFFFFFF"):
 
 def logo_paths():
     paths = []
-    paths += bubble(8.6, 9.4, 6.0, BLUE, "#BFE3FFFF")
-    paths += bubble(16.4, 14.2, 5.4, PINK, "#FFD1E9FF")
-    paths += bubble(9.4, 17.0, 4.3, GREEN, "#D2F7DFFF")
+    paths += bubble(8.6, 9.4, 6.0, BLUE, "#BFE3FF")
+    paths += bubble(16.4, 14.2, 5.4, PINK, "#FFD1E9")
+    paths += bubble(9.4, 17.0, 4.3, GREEN, "#D2F7DF")
     paths.append(dict(d=star_path(17.6, 6.4, 3.0, 1.3), fill=GOLD))
     return paths
 
@@ -515,6 +516,24 @@ def logo_paths():
 # ----------------------------------------------------------------------
 # Writing Android resources
 # ----------------------------------------------------------------------
+
+def fill_colour(fill, alpha=1.0):
+    """Converts a palette colour into an Android fillColor literal.
+
+    Palette colours are either #RRGGBB (the path's `alpha` then supplies the
+    transparency) or #AARRGGBB (which already carries its own alpha). Anything
+    else - a 10 digit literal, for example - is a bug and is rejected here
+    because aapt2 would fail the whole build with a confusing error message.
+    """
+    value = fill.lstrip("#").upper()
+    if len(value) == 8:
+        return "#" + value
+    if len(value) != 6 or any(c not in "0123456789ABCDEF" for c in value):
+        raise ValueError(f"not a colour: {fill!r}")
+    if alpha >= 0.999:
+        return "#" + value
+    return "#" + format(int(round(alpha * 255)), "02X") + value
+
 
 def vector_xml(paths, size=24, even_odd=False):
     lines = [
@@ -530,12 +549,7 @@ def vector_xml(paths, size=24, even_odd=False):
         attrs = []
         fill = path.get("fill")
         if fill:
-            alpha = path.get("alpha", 1.0)
-            if alpha >= 0.999:
-                attrs.append(f'android:fillColor="{fill}"')
-            else:
-                hex_alpha = format(int(alpha * 255), "02X") + fill.lstrip("#")
-                attrs.append(f'android:fillColor="#{hex_alpha}"')
+            attrs.append(f'android:fillColor="{fill_colour(fill, path.get("alpha", 1.0))}"')
         else:
             attrs.append('android:fillColor="#00000000"')
         if path.get("stroke"):
@@ -590,12 +604,11 @@ def main():
     # Build the foreground by re-using the logo path elements at group scale.
     foreground_lines = []
     for path in logo:
-        attrs = [f'android:fillColor="{path["fill"]}"' if path.get("fill") else 'android:fillColor="#00000000"']
+        attrs = [f'android:fillColor="{fill_colour(path["fill"], path.get("alpha", 1.0))}"'
+                 if path.get("fill") else 'android:fillColor="#00000000"']
         if path.get("stroke"):
             attrs += [f'android:strokeColor="{path["stroke"]}"', f'android:strokeWidth="{path["stroke_width"]}"',
                       'android:strokeLineCap="round"']
-        if path.get("alpha") is not None and path.get("alpha", 1.0) < 0.999:
-            attrs[0] = f'android:fillColor="#{format(int(path["alpha"] * 255), "02X")}{path["fill"].lstrip("#")}"'
         attrs.append(f'android:pathData="{path["d"]}"')
         foreground_lines.append("        <path " + "\n            ".join(attrs) + " />")
     with open(os.path.join(layer_dir, "ic_launcher_foreground.xml"), "w") as handle:

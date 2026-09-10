@@ -145,6 +145,23 @@ def structural_checks():
         if count > 1:
             problems.append(f"duplicate <{kind} name=\"{res_name}\"> declared {count} times (last in {file_name})")
 
+    # Android colour literals are #RGB, #ARGB, #RRGGBB or #AARRGGBB. A literal
+    # with any other number of digits - #RRGGBBAA, for instance - is not a colour
+    # at all and makes aapt2 fail the whole build.
+    for base, _, names in os.walk(RES):
+        for name in names:
+            if not name.endswith(".xml"):
+                continue
+            path = os.path.join(base, name)
+            with open(path, encoding="utf-8") as handle:
+                for number, line in enumerate(handle, 1):
+                    for value in re.findall(r'"#([0-9A-Fa-f]{2,})"', line):
+                        if len(value) not in (3, 4, 6, 8):
+                            problems.append(
+                                f"{os.path.relpath(path, MAIN)}:{number}: "
+                                f"'#{value}' is not a valid colour literal "
+                                f"(expected #RGB, #ARGB, #RRGGBB or #AARRGGBB)")
+
     for base, _, names in os.walk(RES):
         for name in names:
             if name == ".DS_Store":
