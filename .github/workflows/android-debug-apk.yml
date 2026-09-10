@@ -199,6 +199,15 @@ jobs:
             cp "$apk" "artifacts/BubbleBlast-debug-${GITHUB_SHA::7}-$(basename "$apk")"
           done
           ls -lh artifacts
+
+          # Sanity check the APK itself: a real one always contains the manifest,
+          # the dex files and the resource table (unzip ships with the runner).
+          for apk in artifacts/*.apk; do
+            echo "--- $(basename "$apk")"
+            unzip -l "$apk" | tail -n 4
+            dex=$(unzip -l "$apk" | grep -c 'classes.*\.dex$' || true)
+            echo "::notice title=APK verified::$(basename "$apk") - $(du -h "$apk" | cut -f1), ${dex} dex file(s)"
+          done
           {
             echo "### Debug APK built :white_check_mark:"
             echo ""
