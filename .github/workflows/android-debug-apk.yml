@@ -126,55 +126,7 @@ jobs:
             echo "No Gradle output was captured." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
-          python3 - "$log" "$GITHUB_STEP_SUMMARY" <<'PY'
-          import re, sys
-
-          log_path, summary_path = sys.argv[1], sys.argv[2]
-          lines = open(log_path, errors="replace").read().splitlines()
-
-          def keep(patterns, source):
-              return [l for l in source if any(re.search(p, l) for p in patterns)]
-
-          errors = keep([r"^\s*e: ", r"^\s*e:file"], lines)          # Kotlin errors
-          problems = keep(
-              [
-                  r"(?i)error:",
-                  r"(?i)^\s*FAILURE:",
-                  r"(?i)what went wrong",
-                  r"(?i)execution failed for task",
-                  r"(?i)caused by:",
-                  r"(?i)could not (resolve|find|determine|download|create|load|open)",
-                  r"(?i)^\s*\* try:",
-                  r"^\s*>\s.*FAILED",
-                  r"(?i)unsupported class file",
-              ],
-              lines,
-          )
-          selected = errors or problems or lines[-250:]
-
-          # Keep insertion order, drop duplicates, and cap the volume.
-          seen, uniq = set(), []
-          for line in selected:
-              line = line.rstrip()
-              if line and line not in seen:
-                  seen.add(line)
-                  uniq.append(line)
-          text = "\n".join(uniq)[:48000]
-
-          chunk_size = 4800
-          chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)][:10]
-          for index, chunk in enumerate(chunks, 1):
-              message = chunk.replace("%", "%25").replace("\r", "").replace("\n", "%0A")
-              print(f"::error title=Build failed ({index}/{len(chunks)})::{message}")
-
-          if not chunks:
-              print("::error title=Build failed::The Gradle build failed; see the run log.")
-
-          with open(summary_path, "a") as summary:
-              summary.write("### Debug APK build failed\n\n")
-              summary.write(f"First {len(uniq)} relevant log line(s):\n\n")
-              summary.write("```\n" + text[:60000] + "\n```\n")
-          PY
+          python3 tools/ci/build_diagnostics.py "$log" "$GITHUB_STEP_SUMMARY"
 
       # Gives the artefact a recognisable file name and fails loudly if Gradle
       # reported success but produced nothing.
@@ -193,6 +145,15 @@ jobs:
             cp "$apk" "artifacts/BubbleBlast-debug-${GITHUB_SHA::7}-$(basename "$apk")"
           done
           ls -lh artifacts
+
+          # Sanity check the APK itself: a real one always contains the manifest,
+          # the dex files and the resource table (unzip ships with the runner).
+          for apk in artifacts/*.apk; do
+            echo "--- $(basename "$apk")"
+            unzip -l "$apk" | tail -n 4
+            dex=$(unzip -l "$apk" | grep -c 'classes.*\.dex$' || true)
+            echo "::notice title=APK verified::$(basename "$apk") - $(du -h "$apk" | cut -f1), ${dex} dex file(s)"
+          done
           {
             echo "### Debug APK built :white_check_mark:"
             echo ""

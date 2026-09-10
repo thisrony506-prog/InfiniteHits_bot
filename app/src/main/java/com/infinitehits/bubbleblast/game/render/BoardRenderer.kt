@@ -18,6 +18,7 @@ import com.infinitehits.bubbleblast.core.model.BubbleColor
 import com.infinitehits.bubbleblast.core.model.BubbleKind
 import com.infinitehits.bubbleblast.core.model.BubbleState
 import com.infinitehits.bubbleblast.core.util.Rng
+import com.infinitehits.bubbleblast.game.ParticleSystem
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sin

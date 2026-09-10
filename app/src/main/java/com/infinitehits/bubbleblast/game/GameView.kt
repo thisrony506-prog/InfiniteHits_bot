@@ -138,7 +138,7 @@ class GameView @JvmOverloads constructor(
     }
 
     fun usePowerUp(powerUp: PowerUp) {
-        commands.add(Command.PowerUp(powerUp))
+        commands.add(Command.UsePowerUp(powerUp))
     }
 
     fun restartLevel() {
@@ -265,7 +265,7 @@ class GameView @JvmOverloads constructor(
                 Command.Resume -> engine?.resume()
                 Command.Restart -> engine?.restart()
                 Command.ContinueAfterGameOver -> engine?.continueWithExtraMoves()
-                is Command.PowerUp -> engine?.usePowerUp(command.powerUp)
+                is Command.UsePowerUp -> engine?.usePowerUp(command.powerUp)
                 is Command.Inventory -> {
                     inventory = command.counts
                     engine?.powerUpInventory = command.counts
@@ -529,7 +529,7 @@ class GameView @JvmOverloads constructor(
         data class Start(val definition: LevelDefinition) : Command
         data class Aim(val x: Float, val y: Float) : Command
         data class Tap(val x: Float, val y: Float) : Command
-        data class PowerUp(val powerUp: PowerUp) : Command
+        data class UsePowerUp(val powerUp: PowerUp) : Command
         data class Inventory(val counts: Map<PowerUp, Int>) : Command
         data object BeginAim : Command
         data object ReleaseAim : Command

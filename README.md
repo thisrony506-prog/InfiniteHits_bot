@@ -104,6 +104,21 @@ and generated SFX + music for shooting, popping, combos, wins, losses and clicks
   working logic; the only intentional stubs are the ad provider (documented) and
   the legal text, which you should replace with your own before publishing.
 
+## Continuous integration
+
+`.github/workflows/android-debug-apk.yml` builds a debug APK on every push, on
+pull requests and on demand (*Actions → Android debug APK → Run workflow*), on
+free GitHub-hosted runners:
+
+* finds the Gradle root and the `com.android.application` module by itself, so a
+  rename or a move does not break it;
+* installs JDK 17 (temurin) and the Android SDK (platform 35, build-tools 35);
+* runs the module's `assembleDebug` task, prints a summary and, if the build
+  fails, turns the compiler errors into check annotations;
+* uploads the APK as the artifact **`bubble-blast-debug-apk`** (14 days).
+
+Install the artifact on a device with `adb install -r BubbleBlast-debug-<sha>-app-debug.apk`.
+
 ## Static checks
 
 ```bash

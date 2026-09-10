@@ -305,7 +305,8 @@ class DailyRewardDialog(
 // ----------------------------------------------------------------------
 
 class ShopDialog(
-    activity: Activity,
+    // A property, not a plain parameter: render() runs again after every purchase.
+    private val activity: Activity,
     private val powerUps: List<PowerUp>,
     initialOwned: Map<PowerUp, Int>,
     initialBalance: Int,
