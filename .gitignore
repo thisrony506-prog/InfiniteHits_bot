@@ -1,8 +1,40 @@
-node_modules/
+# Android / Gradle
+*.iml
+.gradle/
+local.properties
+.idea/
 build/
-dist/
-coverage/
+captures/
+.externalNativeBuild
+.cxx
+.cxx/
+release/
+app/release/
+app/debug/
+*.apk
+*.aab
+*.ap_
+*.dex
+output.json
+
+# Signing material - NEVER commit these
+keystore.properties
+*.jks
+*.keystore
+signing/
+
+# OS / editor
 .DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+
+# Logs
 *.log
-.env*
-!.env.example
+
+# Python tooling
+__pycache__/
+*.pyc
+tools/out/
+.pytest_cache/

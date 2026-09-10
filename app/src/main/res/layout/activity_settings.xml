@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/space_lg"
+        android:paddingEnd="@dimen/space_lg"
+        android:paddingBottom="@dimen/space_xl">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/space_md">
+
+            <ImageButton
+                android:id="@+id/settings_back_button"
+                style="@style/Widget.BubbleBlast.IconButton"
+                android:contentDescription="@string/cd_back"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                style="@style/TextAppearance.BubbleBlast.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_md"
+                android:layout_weight="1"
+                android:text="@string/settings_title" />
+        </LinearLayout>
+
+        <!-- ============ Audio ============ -->
+        <TextView
+            style="@style/TextAppearance.BubbleBlast.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/settings_audio" />
+
+        <LinearLayout
+            style="@style/Widget.BubbleBlast.Panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.BubbleBlast.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_sound"
+                    android:textSize="@dimen/text_subtitle" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/settings_sound_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/space_sm"
+                android:layout_marginBottom="@dimen/space_sm"
+                android:background="@color/stroke_soft" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.BubbleBlast.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_music"
+                    android:textSize="@dimen/text_subtitle" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/settings_music_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/space_sm"
+                android:layout_marginBottom="@dimen/space_sm"
+                android:background="@color/stroke_soft" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.BubbleBlast.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_vibration"
+                    android:textSize="@dimen/text_subtitle" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/settings_vibration_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ============ Gameplay ============ -->
+        <TextView
+            style="@style/TextAppearance.BubbleBlast.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/settings_gameplay" />
+
+        <LinearLayout
+            style="@style/Widget.BubbleBlast.Panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.BubbleBlast.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_show_trajectory"
+                    android:textSize="@dimen/text_subtitle" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/settings_trajectory_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/space_sm"
+                android:layout_marginBottom="@dimen/space_sm"
+                android:background="@color/stroke_soft" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.BubbleBlast.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_left_handed"
+                    android:textSize="@dimen/text_subtitle" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/settings_left_handed_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ============ Progress ============ -->
+        <TextView
+            style="@style/TextAppearance.BubbleBlast.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/settings_progress" />
+
+        <LinearLayout
+            style="@style/Widget.BubbleBlast.Panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/settings_reset_button"
+                style="@style/Widget.BubbleBlast.Button.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_small"
+                android:background="@drawable/bg_button_secondary"
+                android:text="@string/settings_reset"
+                android:textColor="@color/danger_red" />
+        </LinearLayout>
+
+        <!-- ============ Legal ============ -->
+        <TextView
+            style="@style/TextAppearance.BubbleBlast.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/settings_legal" />
+
+        <LinearLayout
+            style="@style/Widget.BubbleBlast.Panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/settings_privacy_button"
+                style="@style/Widget.BubbleBlast.Button.Ghost"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_small"
+                android:text="@string/settings_privacy" />
+
+            <TextView
+                android:id="@+id/settings_terms_button"
+                style="@style/Widget.BubbleBlast.Button.Ghost"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_small"
+                android:layout_marginTop="@dimen/space_sm"
+                android:text="@string/settings_terms" />
+
+            <TextView
+                android:id="@+id/settings_about_button"
+                style="@style/Widget.BubbleBlast.Button.Ghost"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_small"
+                android:layout_marginTop="@dimen/space_sm"
+                android:text="@string/settings_about" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/settings_version_text"
+            style="@style/TextAppearance.BubbleBlast.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_xl"
+            android:text="@string/settings_title" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/game_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_deep"
+    android:orientation="vertical">
+
+    <!-- ============ Top HUD ============ -->
+    <LinearLayout
+        android:id="@+id/game_hud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/space_md"
+        android:paddingTop="@dimen/space_sm"
+        android:paddingEnd="@dimen/space_md"
+        android:paddingBottom="@dimen/space_xs">
+
+        <LinearLayout
+            style="@style/Widget.BubbleBlast.Pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/hud_level_text"
+                style="@style/TextAppearance.BubbleBlast.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_body"
+                android:text="@string/hud_level" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_sm"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/hud_score_text"
+                style="@style/TextAppearance.BubbleBlast.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_title"
+                android:text="@string/hud_score" />
+
+            <TextView
+                android:id="@+id/hud_target_text"
+                style="@style/TextAppearance.BubbleBlast.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hud_target" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/Widget.BubbleBlast.Pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_coins_pill"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_coin" />
+
+            <TextView
+                android:id="@+id/hud_coins_text"
+                style="@style/TextAppearance.BubbleBlast.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_xs"
+                android:textSize="@dimen/text_body"
+                android:text="@string/home_coins" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/hud_pause_button"
+            style="@style/Widget.BubbleBlast.IconButton"
+            android:layout_marginStart="@dimen/space_sm"
+            android:contentDescription="@string/cd_pause"
+            android:src="@drawable/ic_pause" />
+    </LinearLayout>
+
+    <!-- ============ Play field (rendered by the engine) ============ -->
+    <com.infinitehits.bubbleblast.game.GameView
+        android:id="@+id/game_surface"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- ============ Bottom bar ============ -->
+    <LinearLayout
+        android:id="@+id/game_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33120A2E"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/space_md"
+        android:paddingTop="@dimen/space_sm"
+        android:paddingEnd="@dimen/space_md"
+        android:paddingBottom="@dimen/space_sm">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/powerup_aim_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/powerup_button_size"
+                android:layout_weight="1"
+                android:background="@drawable/bg_powerup"
+                android:clickable="true"
+                android:contentDescription="@string/powerup_aim"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/powerup_icon_size"
+                    android:layout_height="@dimen/powerup_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_aim" />
+
+                <TextView
+                    android:id="@+id/powerup_aim_count"
+                    style="@style/TextAppearance.BubbleBlast.Caption"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-4dp"
+                    android:layout_marginEnd="-4dp"
+                    android:background="@drawable/bg_count_badge"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:text="0" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/powerup_color_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/powerup_button_size"
+                android:layout_marginStart="@dimen/space_sm"
+                android:layout_weight="1"
+                android:background="@drawable/bg_powerup"
+                android:clickable="true"
+                android:contentDescription="@string/powerup_color"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/powerup_icon_size"
+                    android:layout_height="@dimen/powerup_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_color_drop" />
+
+                <TextView
+                    android:id="@+id/powerup_color_count"
+                    style="@style/TextAppearance.BubbleBlast.Caption"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-4dp"
+                    android:layout_marginEnd="-4dp"
+                    android:background="@drawable/bg_count_badge"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:text="0" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/powerup_bomb_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/powerup_button_size"
+                android:layout_marginStart="@dimen/space_sm"
+                android:layout_weight="1"
+                android:background="@drawable/bg_powerup"
+                android:clickable="true"
+                android:contentDescription="@string/powerup_bomb"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/powerup_icon_size"
+                    android:layout_height="@dimen/powerup_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_bomb" />
+
+                <TextView
+                    android:id="@+id/powerup_bomb_count"
+                    style="@style/TextAppearance.BubbleBlast.Caption"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-4dp"
+                    android:layout_marginEnd="-4dp"
+                    android:background="@drawable/bg_count_badge"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:text="0" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/powerup_moves_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/powerup_button_size"
+                android:layout_marginStart="@dimen/space_sm"
+                android:layout_weight="1"
+                android:background="@drawable/bg_powerup"
+                android:clickable="true"
+                android:contentDescription="@string/powerup_moves"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/powerup_icon_size"
+                    android:layout_height="@dimen/powerup_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_plus_circle" />
+
+                <TextView
+                    android:id="@+id/powerup_moves_count"
+                    style="@style/TextAppearance.BubbleBlast.Caption"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="-4dp"
+                    android:layout_marginEnd="-4dp"
+                    android:background="@drawable/bg_count_badge"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary"
+                    android:text="0" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                style="@style/Widget.BubbleBlast.Pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/game_moves_label"
+                    style="@style/TextAppearance.BubbleBlast.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hud_moves" />
+
+                <TextView
+                    android:id="@+id/game_moves_text"
+                    style="@style/TextAppearance.BubbleBlast.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:textSize="@dimen/text_subtitle"
+                    android:text="@string/hud_moves_left" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/game_next_label"
+                style="@style/TextAppearance.BubbleBlast.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_sm"
+                android:text="@string/hud_next" />
+
+            <com.infinitehits.bubbleblast.ui.view.BubblePreviewView
+                android:id="@+id/game_next_preview"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/cd_next_bubble" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/game_combo_text"
+                style="@style/TextAppearance.BubbleBlast.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:textColor="@color/accent_cyan"
+                android:textSize="@dimen/text_subtitle"
+                android:text="@string/hud_combo" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
