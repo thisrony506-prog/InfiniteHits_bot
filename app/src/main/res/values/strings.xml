@@ -30,7 +30,7 @@
     <string name="hud_score">Score</string>
     <string name="hud_moves">Moves</string>
     <string name="hud_moves_left">%1$d</string>
-    <string name="hud_target">Target %1$d</string>
+    <string name="hud_target">Target %1$s</string>
     <string name="hud_next">Next</string>
     <string name="hud_combo">COMBO x%1$d</string>
 
@@ -50,7 +50,7 @@
     <string name="powerup_none_left">No %1$s left</string>
     <string name="powerup_owned">Owned: %1$d</string>
     <string name="shop_title">Power-up Shop</string>
-    <string name="shop_balance">Your coins: %1$d</string>
+    <string name="shop_balance">Your coins: %1$s</string>
     <string name="shop_buy">Buy</string>
     <string name="shop_not_enough">Not enough coins</string>
     <string name="shop_purchased">%1$s purchased</string>
